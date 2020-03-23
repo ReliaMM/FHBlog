@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GitLab CI/CD 自动部署构建 | 风禾风禾呀</title>
+    <meta name="description" content="风禾风禾呀">
+    <meta name="generator" content="VuePress 1.4.0">
+    <link rel="icon" href="/FHBlog/assets/img/zebra-3.png">
+    
+    <link rel="preload" href="/FHBlog/assets/css/0.styles.bbeac537.css" as="style"><link rel="preload" href="/FHBlog/assets/js/app.c28660a9.js" as="script"><link rel="preload" href="/FHBlog/assets/js/2.e5136842.js" as="script"><link rel="preload" href="/FHBlog/assets/js/17.8d982329.js" as="script"><link rel="preload" href="/FHBlog/assets/js/5.bdf09a12.js" as="script"><link rel="preload" href="/FHBlog/assets/js/3.8bc07ed0.js" as="script"><link rel="prefetch" href="/FHBlog/assets/js/10.8136d8ab.js"><link rel="prefetch" href="/FHBlog/assets/js/11.e1bf2f4e.js"><link rel="prefetch" href="/FHBlog/assets/js/12.c9de541d.js"><link rel="prefetch" href="/FHBlog/assets/js/13.229dffde.js"><link rel="prefetch" href="/FHBlog/assets/js/14.ebebfd07.js"><link rel="prefetch" href="/FHBlog/assets/js/15.dd4cc9a2.js"><link rel="prefetch" href="/FHBlog/assets/js/16.079da3ab.js"><link rel="prefetch" href="/FHBlog/assets/js/18.377d9647.js"><link rel="prefetch" href="/FHBlog/assets/js/19.cbef7763.js"><link rel="prefetch" href="/FHBlog/assets/js/20.f98e98be.js"><link rel="prefetch" href="/FHBlog/assets/js/21.a2db72ca.js"><link rel="prefetch" href="/FHBlog/assets/js/22.4ce08a7d.js"><link rel="prefetch" href="/FHBlog/assets/js/4.f90044f4.js"><link rel="prefetch" href="/FHBlog/assets/js/6.02e477d8.js"><link rel="prefetch" href="/FHBlog/assets/js/7.150b3ea5.js"><link rel="prefetch" href="/FHBlog/assets/js/8.b2918a25.js"><link rel="prefetch" href="/FHBlog/assets/js/9.8703a470.js">
+    <link rel="stylesheet" href="/FHBlog/assets/css/0.styles.bbeac537.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/FHBlog/" class="home-link router-link-active"><img src="/FHBlog/assets/img/zebra-3.png" alt="风禾风禾呀" class="logo"> <span class="site-name can-hide">风禾风禾呀</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FHBlog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/FHBlog/vue/源码/一、Vue 源码之数据劫持.html" class="nav-link">
+  源码
+</a></li><li class="dropdown-item"><!----> <a href="/FHBlog/vue/vuex.html" class="nav-link">
+  vuex
+</a></li><li class="dropdown-item"><!----> <a href="/FHBlog/vue/vue-router.html" class="nav-link">
+  vue-router
+</a></li></ul></div></div><div class="nav-item"><a href="/FHBlog/js/JavaScript 原生方法模拟实现.html" class="nav-link">
+  JS
+</a></div><div class="nav-item"><a href="/FHBlog/浏览器/跨域的九种解决方案.html" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><a href="/FHBlog/安全/最基础的 Web 安全问题.html" class="nav-link">
+  安全
+</a></div><div class="nav-item"><a href="/FHBlog/服务器/基于 CentOS 7 搭建异常监控 Sentry.html" class="nav-link">
+  服务器
+</a></div> <a href="https://github.com/ReliaMM/FHBlog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FHBlog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Vue" class="dropdown-title"><span class="title">Vue</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/FHBlog/vue/源码/一、Vue 源码之数据劫持.html" class="nav-link">
+  源码
+</a></li><li class="dropdown-item"><!----> <a href="/FHBlog/vue/vuex.html" class="nav-link">
+  vuex
+</a></li><li class="dropdown-item"><!----> <a href="/FHBlog/vue/vue-router.html" class="nav-link">
+  vue-router
+</a></li></ul></div></div><div class="nav-item"><a href="/FHBlog/js/JavaScript 原生方法模拟实现.html" class="nav-link">
+  JS
+</a></div><div class="nav-item"><a href="/FHBlog/浏览器/跨域的九种解决方案.html" class="nav-link">
+  浏览器
+</a></div><div class="nav-item"><a href="/FHBlog/安全/最基础的 Web 安全问题.html" class="nav-link">
+  安全
+</a></div><div class="nav-item"><a href="/FHBlog/服务器/基于 CentOS 7 搭建异常监控 Sentry.html" class="nav-link">
+  服务器
+</a></div> <a href="https://github.com/ReliaMM/FHBlog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>前端监控</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FHBlog/服务器/基于 CentOS 7 搭建异常监控 Sentry.html" class="sidebar-link">基于 CentOS 7 搭建异常监控 Sentry</a></li><li><a href="/FHBlog/服务器/GitLab CI_CD 自动部署构建.html" class="active sidebar-link">GitLab CI/CD 自动部署构建</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FHBlog/服务器/GitLab CI_CD 自动部署构建.html#一、背景" class="sidebar-link">一、背景</a></li><li class="sidebar-sub-header"><a href="/FHBlog/服务器/GitLab CI_CD 自动部署构建.html#二、git-runner-介绍" class="sidebar-link">二、Git Runner 介绍</a></li><li class="sidebar-sub-header"><a href="/FHBlog/服务器/GitLab CI_CD 自动部署构建.html#三、安装配置-git-runner" class="sidebar-link">三、安装配置 Git Runner</a></li><li class="sidebar-sub-header"><a href="/FHBlog/服务器/GitLab CI_CD 自动部署构建.html#四、yml-配置" class="sidebar-link">四、yml 配置</a></li><li class="sidebar-sub-header"><a href="/FHBlog/服务器/GitLab CI_CD 自动部署构建.html#五、自动运行" class="sidebar-link">五、自动运行</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="gitlab-ci-cd-自动部署构建"><a href="#gitlab-ci-cd-自动部署构建" class="header-anchor">#</a> GitLab CI/CD 自动部署构建</h1> <h2 id="一、背景"><a href="#一、背景" class="header-anchor">#</a> 一、背景</h2> <p>每次改完需求之后，更新到测试服务器都需要<strong>手动</strong>打包，并<strong>上传</strong>到服务器，多次人工干预操作，目前就有这样一个现成的基于 <code>GitLab CI</code> 工具，让我们<strong>提交</strong>或者<strong>合并</strong>代码后，就自动帮我们执行一段任务(打包、压缩、上传服务器)。从而实现自动上线。这里记录一下简单的步骤，因为每个人安装会面对不同的问题，后期有值得总结的，再补充。</p> <h2 id="二、git-runner-介绍"><a href="#二、git-runner-介绍" class="header-anchor">#</a> 二、Git Runner 介绍</h2> <h3 id="是什么"><a href="#是什么" class="header-anchor">#</a> 是什么</h3> <p>它是我们自动构建的主服务</p> <blockquote><p>Runner 是一个执行任务的进程。可以根据需要配置任意数量的 Runner。
+Runner 可以放在<strong>不同的用户</strong>、<strong>服务器</strong>，甚至 <strong>本地机器上。</strong></p></blockquote> <h3 id="怎么配"><a href="#怎么配" class="header-anchor">#</a> 怎么配</h3> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1584626140254-5e365765-184f-4571-8c0c-abf4738c98c9.png#align=left&amp;display=inline&amp;height=69&amp;name=image.png&amp;originHeight=236&amp;originWidth=2540&amp;size=44889&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <p>它实际就是 <code>.gitlab-ci.yml</code> ，写一下然后交给 <code>Git Runner</code>  去执行。
+<img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1584626168105-aa400b69-f9b8-4dc6-bfde-08e79d29efe6.png#align=left&amp;display=inline&amp;height=135&amp;name=image.png&amp;originHeight=270&amp;originWidth=2146&amp;size=40317&amp;status=done&amp;style=none&amp;width=1073" alt="image.png"></p> <h3 id="怎么安装-runner"><a href="#怎么安装-runner" class="header-anchor">#</a> 怎么安装 Runner</h3> <h4 id="先安装-docker"><a href="#先安装-docker" class="header-anchor">#</a> <a href="https://www.yuque.com/mty/here/vrqiwx#BPan3" target="_blank" rel="noopener noreferrer">先安装 Docker<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></h4> <h4 id="强调的是配置阿里云服务器-docker-源"><a href="#强调的是配置阿里云服务器-docker-源" class="header-anchor">#</a> 强调的是配置阿里云服务器 Docker 源</h4> <ul><li>购买阿里云服务器会默认给你分配一个 <a href="https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors" target="_blank" rel="noopener noreferrer">Docker 源<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，这样拽 Docker 镜像会比较快。</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/docker
+<span class="token function">sudo</span> <span class="token function">tee</span> /etc/docker/daemon.json <span class="token operator">&lt;&lt;-</span><span class="token string">'EOF'
+{
+  &quot;registry-mirrors&quot;: [&quot;https://[你的私有key].mirror.aliyuncs.com&quot;]
+}
+EOF</span>
+<span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl restart docker
+</code></pre></div><h2 id="三、安装配置-git-runner"><a href="#三、安装配置-git-runner" class="header-anchor">#</a> 三、安装配置 Git Runner</h2> <h4 id="_1、拉取-gitlab-runner-镜像"><a href="#_1、拉取-gitlab-runner-镜像" class="header-anchor">#</a> 1、拉取 gitlab-runner 镜像</h4> <blockquote><p>docker 镜像加速器配置好，这块会快一些，没配置的可能会慢一点</p></blockquote> <p><code>Git Runner</code>  它是辅助 <code>Git</code>  构建的一个服务</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>docker pull gitlab<span class="token operator">/</span>gitlab<span class="token operator">-</span>runner
+</code></pre></div><p>安装好之后可以 <code>docker images</code>  测试查看
+<img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1584627174924-869041e9-30f9-4d11-a6af-1afbc462f0ac.png#align=left&amp;display=inline&amp;height=97&amp;name=image.png&amp;originHeight=212&amp;originWidth=1632&amp;size=61457&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="_2、创建容器并启动"><a href="#_2、创建容器并启动" class="header-anchor">#</a> 2、创建容器并启动</h4> <div class="language-javascript extra-class"><pre class="language-javascript"><code>docker run <span class="token operator">-</span>d <span class="token operator">--</span>name gitlab<span class="token operator">-</span>runner <span class="token operator">--</span>restart always \
+   <span class="token operator">-</span>v <span class="token operator">~</span><span class="token operator">/</span>gitlab<span class="token operator">-</span>runner<span class="token operator">/</span>config<span class="token operator">:</span><span class="token operator">/</span>etc<span class="token operator">/</span>gitlab<span class="token operator">-</span>runner \
+   <span class="token operator">-</span>v <span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>run<span class="token operator">/</span>docker<span class="token punctuation">.</span>sock<span class="token operator">:</span><span class="token operator">/</span><span class="token keyword">var</span><span class="token operator">/</span>run<span class="token operator">/</span>docker<span class="token punctuation">.</span>sock \
+   gitlab<span class="token operator">/</span>gitlab<span class="token operator">-</span>runner<span class="token operator">:</span>latest
+</code></pre></div><p>现在 <code>gitlab-runner</code>  就启动了，可以通过 <code>docker ps</code>  查看，
+<img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1584627417736-f7cfa67e-5f1e-439a-871f-2496e411a697.png#align=left&amp;display=inline&amp;height=39&amp;name=image.png&amp;originHeight=122&amp;originWidth=2352&amp;size=36339&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="_3、注册-gitlab-runner"><a href="#_3、注册-gitlab-runner" class="header-anchor">#</a> 3、注册 gitlab-runner</h4> <blockquote><p>这里容器ID是上一步执行的返回的 ID，只去前几位就行。不用复制完。</p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code>docker exec <span class="token operator">-</span>it <span class="token punctuation">[</span>容器<span class="token constant">ID</span><span class="token punctuation">]</span> gitlab<span class="token operator">-</span>runner register
+</code></pre></div><p>上面命令执行中会让你一次让你输入 gitlab URL、token、runner-server、tag、docker、docker:stable</p> <h5 id="_2-1、填写-gitlab-url"><a href="#_2-1、填写-gitlab-url" class="header-anchor">#</a> 2.1、填写 Gitlab URL</h5> <div class="language-bash extra-class"><pre class="language-bash"><code>Please enter the gitlab-ci coordinator URL <span class="token punctuation">(</span>e.g. https://gitlab.com/<span class="token punctuation">)</span>:
+</code></pre></div><h5 id="_2-2、填写-token"><a href="#_2-2、填写-token" class="header-anchor">#</a> 2.2、填写 token</h5> <div class="language-javascript extra-class"><pre class="language-javascript"><code>Please enter the gitlab<span class="token operator">-</span>ci token <span class="token keyword">for</span> <span class="token keyword">this</span> runner<span class="token operator">:</span>
+</code></pre></div><h5 id="_2-3、runner-描述信息"><a href="#_2-3、runner-描述信息" class="header-anchor">#</a> 2.3、runner 描述信息</h5> <p>这里起了 runner-server</p> <div class="language-bash extra-class"><pre class="language-bash"><code>Please enter the gitlab-ci description <span class="token keyword">for</span> this runner:
+<span class="token punctuation">[</span>ec66aa43edf6<span class="token punctuation">]</span>: runner-server
+</code></pre></div><h5 id="_2-4、填写-tag-名字"><a href="#_2-4、填写-tag-名字" class="header-anchor">#</a> 2.4、填写 tag 名字</h5> <p>一个 git 仓库可以对应多个 runnder, 执行 yml 文件可以指定某一个 runner , 所以需要起一个名字标识</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>Please enter the gitlab<span class="token operator">-</span>ci tags <span class="token keyword">for</span> <span class="token keyword">this</span> <span class="token function">runner</span> <span class="token punctuation">(</span>comma separated<span class="token punctuation">)</span><span class="token operator">:</span>
+</code></pre></div><h5 id="_2-5、执行器选择-docker"><a href="#_2-5、执行器选择-docker" class="header-anchor">#</a> 2.5、执行器选择 docker</h5> <div class="language-bash extra-class"><pre class="language-bash"><code>Please enter the executor: docker-ssh, parallels, virtualbox, docker-ssh+machine, custom, docker, shell, ssh, docker+machine, kubernetes:
+docker
+</code></pre></div><h5 id="_2-6、docker-img"><a href="#_2-6、docker-img" class="header-anchor">#</a> 2.6、Docker img</h5> <p>这里输入 docker:stable</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>Please enter the <span class="token keyword">default</span> Docker <span class="token function">image</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>g<span class="token punctuation">.</span> ruby<span class="token operator">:</span><span class="token number">2.6</span><span class="token punctuation">)</span><span class="token operator">:</span>
+docker<span class="token operator">:</span>stable
+</code></pre></div><h4 id="这几个值怎么找，登陆你的-gitlab-设置-ci-cd-runner-展开"><a href="#这几个值怎么找，登陆你的-gitlab-设置-ci-cd-runner-展开" class="header-anchor">#</a> 这几个值怎么找，登陆你的 gitlab -&gt; 设置 -&gt; CI/CD -&gt; Runner 展开</h4> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583988761280-fdcd94ba-f4d1-4200-9145-948dc4b33ade.png#align=left&amp;display=inline&amp;height=224&amp;name=image.png&amp;originHeight=766&amp;originWidth=2554&amp;size=163356&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="找到-gitlab-url、token"><a href="#找到-gitlab-url、token" class="header-anchor">#</a> 找到 gitlab URL、token</h4> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583988840033-aedd8145-751e-4462-b2d7-e3a7a98563dd.png#align=left&amp;display=inline&amp;height=428&amp;name=image.png&amp;originHeight=1334&amp;originWidth=2324&amp;size=319785&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583989584410-43e8baf5-c4f4-415f-b09d-9657afc51996.png#align=left&amp;display=inline&amp;height=233&amp;name=image.png&amp;originHeight=466&amp;originWidth=1480&amp;size=167092&amp;status=done&amp;style=shadow&amp;width=740" alt="image.png">
+到这里 <code>runner</code>  配置成功
+配置成功之后，将会在页面中看到 此项目已激活的运行器
+<img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1584628201217-fbe8ac69-74bf-4c05-8db1-da7a0df193ab.png#align=left&amp;display=inline&amp;height=297&amp;name=image.png&amp;originHeight=594&amp;originWidth=1406&amp;size=67642&amp;status=done&amp;style=shadow&amp;width=703" alt="image.png"></p> <h2 id="四、yml-配置"><a href="#四、yml-配置" class="header-anchor">#</a> 四、yml 配置</h2> <p>我们需要创建一个 <code>.gitlab-ci.yml</code>  文件，一下有一个例子</p> <h4 id="例子"><a href="#例子" class="header-anchor">#</a> 例子</h4> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># 使用哪个镜像构建</span>
+image: node
+
+<span class="token comment"># 阶段</span>
+stages:
+  - <span class="token function">install</span>
+  - build
+  - <span class="token function">zip</span>
+  - deploy
+
+<span class="token comment"># 每一步骤都需要拉取新的镜像，cache 缓存做一个保留</span>
+cache:
+    paths:
+        - node_modules/
+        - dist/
+        - front-end-caiwu.tar
+
+<span class="token comment"># 执行所有 script 之前都会执行的 script 钩子</span>
+before_script:
+  - <span class="token string">'which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client -y ) '</span>
+  - <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">$(</span>ssh-agent -s<span class="token variable">)</span></span>
+  - ssh-add <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token builtin class-name">echo</span> <span class="token string">&quot;<span class="token variable">$SSH_PRIVATE_KEY_DEV</span>&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment"># 因为在 node 镜像中执行，若是选择执行器 是 shell 此步会干掉宿主机的ssh</span>
+  - <span class="token function">mkdir</span> -p ~/.ssh
+  - <span class="token string">'[[ -f /.dockerenv ]] &amp;&amp; echo -e &quot;Host *<span class="token entity" title="\n">\n</span><span class="token entity" title="\t">\t</span>StrictHostKeyChecking no<span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span>&quot; &gt; ~/.ssh/config'</span>
+
+
+install:
+  stage: <span class="token function">install</span>
+  tags:
+   - tagcicd
+  script:
+    - <span class="token function">npm</span> <span class="token function">install</span> -g cnpm --registry<span class="token operator">=</span>https://registry.npm.taobao.org
+    - cnpm <span class="token function">install</span>
+
+build:
+  stage: build
+  script:
+    - <span class="token function">npm</span> run build
+
+zip:
+  stage: <span class="token function">zip</span>
+  script:
+   - <span class="token function">tar</span> -czvf front-end-caiwu.tar ./dist
+
+deploy:
+  stage: deploy
+  script:
+   - <span class="token function">scp</span> ./front-end-caiwu.tar root@XXXXXXXX:/data
+
+</code></pre></div><h4 id="默认-tags"><a href="#默认-tags" class="header-anchor">#</a> 默认 tags</h4> <p>上面 yml 配置没有指名 tags, 可配置一个默认的
+<img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1584628246707-90e47224-5cf5-46a9-b11f-635fe40b5127.png#align=left&amp;display=inline&amp;height=201&amp;name=image.png&amp;originHeight=402&amp;originWidth=662&amp;size=24005&amp;status=done&amp;style=shadow&amp;width=331" alt="image.png"> <img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583990271831-fb637bef-efc2-4e56-a2c1-741dd12bf8da.png#align=left&amp;display=inline&amp;height=340&amp;name=image.png&amp;originHeight=680&amp;originWidth=1288&amp;size=74584&amp;status=done&amp;style=shadow&amp;width=644" alt="image.png"></p> <h4 id=""><a href="#" class="header-anchor">#</a></h4> <h4 id="变量配置"><a href="#变量配置" class="header-anchor">#</a> 变量配置</h4> <ul><li>需要注意  $SSH_PRIVATE_KEY_DEV 是变量，需要在下图中配置 值是 value 需要配置一下</li></ul> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583989717836-6f3c2fb4-4055-4895-a09d-0702bc236a0f.png#align=left&amp;display=inline&amp;height=242&amp;name=image.png&amp;originHeight=772&amp;originWidth=2384&amp;size=176195&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="ssh-private-key-dev-value-生成"><a href="#ssh-private-key-dev-value-生成" class="header-anchor">#</a> $SSH_PRIVATE_KEY_DEV value 生成</h4> <p>这一步很容易出现问题，网上版本也多，解决方案也不一样。一下可参考，但不保证按照步骤来就没问题。</p> <p>1、首先，在任何一台服务器上称A，创建 RSA 无密码的密钥：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>ssh<span class="token operator">-</span>keygen <span class="token operator">-</span>t rsa <span class="token operator">-</span><span class="token constant">P</span> <span class="token string">''</span>
+cat <span class="token operator">/</span>root<span class="token operator">/</span><span class="token punctuation">.</span>ssh<span class="token operator">/</span>id_rsa
+</code></pre></div><p>2、特别注意需要复制完整包含 --- 复制到上图中 value里面</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span><span class="token constant">BEGIN</span> <span class="token constant">RSA</span> <span class="token constant">PRIVATE</span> <span class="token constant">KEY</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> 
+xxxxxxx 
+<span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span><span class="token constant">END</span> <span class="token constant">RSA</span> <span class="token constant">PRIVATE</span> <span class="token constant">KEY</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span>
+</code></pre></div><p>3、然后在 A 服务器，执行代码 ssh-copy-id root 你需要部署的服务器 B, 期间会让你输入一次密码，后期就不会在输入。</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># RSA 密钥对应的公钥，上传到需要连接到的服务器</span>
+ssh-copy-id root@你的服务器地址
+<span class="token comment"># 测试</span>
+<span class="token function">ssh</span> root@你的服务器地址  
+</code></pre></div><h2 id="五、自动运行"><a href="#五、自动运行" class="header-anchor">#</a> 五、自动运行</h2> <p>当你push 代码的时候，会自动生成一条流水线</p> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583990492665-0495ef89-aba3-4d6f-b6e6-35ddc8a11dce.png#align=left&amp;display=inline&amp;height=178&amp;name=image.png&amp;originHeight=586&amp;originWidth=2462&amp;size=122502&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <p>感受一下
+<img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583990714253-a2dc3853-d245-41d6-9ca7-4137bb1f27ff.png#align=left&amp;display=inline&amp;height=502&amp;name=image.png&amp;originHeight=1458&amp;originWidth=2166&amp;size=345869&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="第二阶段-打包-build"><a href="#第二阶段-打包-build" class="header-anchor">#</a> 第二阶段 打包 build</h4> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583990883678-b9464414-7fe9-4f46-9b9d-1e22ce74a1d4.png#align=left&amp;display=inline&amp;height=333&amp;name=image.png&amp;originHeight=886&amp;originWidth=1986&amp;size=81677&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="第三阶段-压缩称-zip"><a href="#第三阶段-压缩称-zip" class="header-anchor">#</a> 第三阶段 压缩称 zip</h4> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583991079364-eedb6014-815c-4840-a9cf-5cf1f1b8ac84.png#align=left&amp;display=inline&amp;height=337&amp;name=image.png&amp;originHeight=868&amp;originWidth=1924&amp;size=79458&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <h4 id="第四阶段-deploy-成功"><a href="#第四阶段-deploy-成功" class="header-anchor">#</a> 第四阶段 deploy 成功</h4> <ul><li>好长时间 4个job 14分钟</li></ul> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583991394653-5043793a-b57c-4fa2-9ff1-758118fe8e86.png#align=left&amp;display=inline&amp;height=414&amp;name=image.png&amp;originHeight=828&amp;originWidth=2058&amp;size=81638&amp;status=done&amp;style=none&amp;width=1029" alt="image.png"></p> <p>成功 生成 front-end-caiwu.tar  可以在yml 命令添加 解压缩放置到对应后端指定目录中。</p> <h3 id="-2"><a href="#-2" class="header-anchor">#</a> <img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583991482633-8639b152-922f-4249-82f4-8b2c5a13ffc3.png#align=left&amp;display=inline&amp;height=129&amp;name=image.png&amp;originHeight=258&amp;originWidth=1126&amp;size=49455&amp;status=done&amp;style=shadow&amp;width=563" alt="image.png"></h3> <h3 id="-3"><a href="#-3" class="header-anchor">#</a></h3> <h3 id="彩蛋"><a href="#彩蛋" class="header-anchor">#</a> 彩蛋</h3> <p><img src="https://cdn.nlark.com/yuque/0/2020/png/424608/1583990819638-48a611e9-d1b1-43c4-a58c-9b81d416db90.png#align=left&amp;display=inline&amp;height=423&amp;name=image.png&amp;originHeight=1576&amp;originWidth=2780&amp;size=320566&amp;status=done&amp;style=shadow&amp;width=746" alt="image.png"></p> <div><div class="zr-title" style="font-size:;"><div class="zr-title__left zr-title--large"><span class="zr-title__left-content">完整 yml 分享</span><!----></div><!----></div></div> <ul><li>.gitlab-1ci.yml</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>image: node
+
+stages:
+  - <span class="token function">install</span>
+  - build
+  - <span class="token function">zip</span>
+  - deploy
+
+cache:
+    paths:
+        - node_modules/
+        - static/
+        - front-end-caiwu.tar
+
+before_script:
+  - <span class="token string">'which ssh-agent || ( apt-get update -y &amp;&amp; apt-get install openssh-client -y ) '</span>
+  - <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">$(</span>ssh-agent -s<span class="token variable">)</span></span>
+  - ssh-add <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token builtin class-name">echo</span> <span class="token string">&quot;<span class="token variable">$SSH_PRIVATE_KEY_DEV</span>&quot;</span><span class="token punctuation">)</span>
+  - <span class="token function">mkdir</span> -p ~/.ssh
+  - <span class="token string">'[[ -f /.dockerenv ]] &amp;&amp; echo -e &quot;Host *<span class="token entity" title="\n">\n</span><span class="token entity" title="\t">\t</span>StrictHostKeyChecking no<span class="token entity" title="\n">\n</span><span class="token entity" title="\n">\n</span>&quot; &gt; ~/.ssh/config '</span>
+
+install:
+  stage: <span class="token function">install</span>
+  tags:
+    - tagtym
+  only:
+    - master
+  script:
+    - <span class="token function">npm</span> <span class="token function">install</span> -g cnpm --registry<span class="token operator">=</span>https://registry.npm.taobao.org
+    - cnpm <span class="token function">install</span>
+
+build:
+  stage: build
+  tags:
+    - tagtym
+  only:
+    - master
+  script:
+    - <span class="token function">npm</span> run build
+
+zip:
+  stage: <span class="token function">zip</span>
+  tags:
+    - tagtym
+  only:
+    - master
+  script:
+   - <span class="token function">tar</span> -czvf front-end-caiwu.tar ./static
+
+deploy:
+  stage: deploy
+  tags:
+    - tagtym
+  only:
+    - master
+  script:
+   - <span class="token function">scp</span> ./front-end-caiwu.tar root@<span class="token variable">$DEPLOY_SERVER_DEV</span>:/data/frontEnd
+   - <span class="token function">ssh</span> root@<span class="token variable">$DEPLOY_SERVER_DEV</span> <span class="token string">&quot;cd /data/www/lighttpd/caiwu/public &amp;&amp; rm -rf ./static/* &amp;&amp; tar zxvf /data/frontEnd/front-end-caiwu.tar -C /data/www/lighttpd/caiwu/public &amp;&amp; <span class="token entity" title="\c">\c</span>p ./static/index.html ../resources/views/welcome.blade.php&quot;</span>
+</code></pre></div><h3 id="坑"><a href="#坑" class="header-anchor">#</a> 坑</h3> <ul><li>npm run build 在 mac 本机打包没问题，node 环境打包就有问题，原因：import 文件名字大小有误</li> <li>ssh 配置一直让输入密码，之前  $SSH_PRIVATE_KEY_DEV value 是从服务器上面 取的id_rsa,最后看底部博客随便找服务器，配置一个新的，然后就可以了。</li> <li>autodevops 可以设置关闭</li></ul> <h3 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h3> <p><a href="https://www.cnblogs.com/xishuai/p/ubuntu-gitlab-ci-docker-aspnet-core-part-1.html" target="_blank" rel="noopener noreferrer">Ubuntu &amp; GitLab CI &amp; Docker &amp; ASP.NET Core 2.0 自动化发布和部署（1）<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="https://www.cnblogs.com/szk5043/articles/9854712.html" target="_blank" rel="noopener noreferrer">GitLab之gitlab-ci.yml配置文件详解<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="https://www.ituring.com.cn/article/507812" target="_blank" rel="noopener noreferrer">CICD 配置项<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="http://*****.com/help/ci/examples/README.md" target="_blank" rel="noopener noreferrer">http://[你的 git 地址].com/help/ci/examples/README.md<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html" target="_blank" rel="noopener noreferrer">travis_ci_tutorial<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="noopener noreferrer">yaml 语法<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/ReliaMM/FHBlog/edit/master/docs/服务器/GitLab CI_CD 自动部署构建.md" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FHBlog/服务器/基于 CentOS 7 搭建异常监控 Sentry.html" class="prev">
+        基于 CentOS 7 搭建异常监控 Sentry
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/FHBlog/assets/js/app.c28660a9.js" defer></script><script src="/FHBlog/assets/js/2.e5136842.js" defer></script><script src="/FHBlog/assets/js/17.8d982329.js" defer></script><script src="/FHBlog/assets/js/5.bdf09a12.js" defer></script><script src="/FHBlog/assets/js/3.8bc07ed0.js" defer></script>
+  </body>
+</html>
